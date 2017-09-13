@@ -1,0 +1,61 @@
+
+@mixin sefFont($px) {
+    font-size: $px+px;
+    [data-dpr="2"] & {
+        font-size: 2*$px+px;
+    }
+    [data-dpr="3"] & {
+        font-size: 3*$px+px;
+    }
+}
+
+.fs-36 {
+    @include sefFont(36);
+}
+
+.fs-30 {
+    @include sefFont(30);
+}
+
+.fs-28 {
+    @include sefFont(28);
+}
+
+.fs-24 {
+    @include sefFont(24);
+}
+
+.fs-22 {
+    @include sefFont(22);
+}
+
+.fs-20 {
+    @include sefFont(20);
+}
+
+.fs-18 {
+    @include sefFont(18);
+}
+
+.fs-16 {
+    @include sefFont(16);
+}
+
+.fs-14 {
+    @include sefFont(14);
+}
+
+.fs-12 {
+    @include sefFont(12);
+}
+@function px2rem($px) {
+    @return $px*320/$designWidth/20+rem;
+}
+
+@function pvh($px) {
+    @return $px/$designHeight*100+vh;
+}
+
+$designWidth:750;
+// $designHeight:1334;
+// $designHeight:1214;
