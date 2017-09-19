@@ -1,10 +1,13 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+//rem
 import 'hotcss'
 import Vue from 'vue'
 import App from './App'
 import router from './core/router'
 import store from './core/vuex'
+//bus
+import Bus from './core/bus'
+window.bus=Bus
+import filter from './core/bus'
 //MintUi
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'

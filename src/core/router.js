@@ -2,8 +2,8 @@ import Vue from 'vue'
 import store from '@/core/vuex'
 import Router from 'vue-router'
 //页面
-import Index from '@/views/Index'
-
+const Index = () =>
+import ('@/views/Index');
 //路由
 Vue.use(Router);
 const router = new Router({

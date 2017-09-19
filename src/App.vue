@@ -5,7 +5,17 @@
 </template>
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  created(){
+    bus.$on('test',val => {
+      console.log(`bus test print ${val}`);
+    });
+    /* this.$http.post('url')
+    .then((res)=>{
+      console.log(res)
+    }) */
+    /* bus.$emit('test','测试'); */
+  }
 } 
 </script>
 <style lang="scss">
@@ -16,12 +26,12 @@ export default {
   ul, ol {
     list-style: none;
   }
-.pic{
-  >img{
-      display: block;
-      width: 100%;
-    } 
-  }
+  .pic{
+    >img{
+        display: block;
+        width: 100%;
+      } 
+    }
   .fr {
     float: right;
   }
