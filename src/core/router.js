@@ -19,7 +19,7 @@ const router = new Router({
 //路由拦截
 router.beforeEach((to, from, next) => {
     document.title = to.meta.title;
-    Bus.$emit('modal_close');
+    bus.$emit('modal_close');
     next();
 })
 export default router;

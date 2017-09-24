@@ -1,5 +1,5 @@
 $designWidth:750;
-@mixin sefFont($px) {
+@mixin set-font($px) {
     font-size: $px+px;
     [data-dpr="2"] & {
         font-size: 2*$px+px;
