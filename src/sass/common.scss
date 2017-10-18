@@ -1,0 +1,194 @@
+@import './base.scss';
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+button,
+input,
+textarea,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+.pic {
+  >img {
+    display: block;
+    width: 100%;
+  }
+}
+
+.fr {
+  float: right;
+}
+
+.fl {
+  float: left;
+}
+
+.clearfix {
+  &:after {
+    content: "\200b";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
+.text-center{
+  text-align: center;
+}
+.text-right{
+  text-align: right;
+}
+.text-left{
+  text-align: left
+}
+button,
+input,
+textarea {
+  outline: none;
+  border: none;
+  background: transparent;
+  resize: none;
+  font-weight: 300;
+}
+::-webkit-input-placeholder {
+  color: #adadad;
+}
+
+.bg-img {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.fs-18,
+.h1,
+h1 {
+  @include h1;
+}
+
+.fs-16,
+.h2,
+h2 {
+  @include h2;
+}
+
+.fs-15 {
+  @include fs-15
+}
+
+.fs-14,
+.h3,
+h3 {
+  @include h3;
+}
+
+.fs-12,
+.h5,
+h5 {
+  @include h5;
+}
+
+.fs-10 {
+  @include fs-10;
+}
+@for $i from 1 through 100 {
+  @if $i < 10 {
+    .set-w-0#{$i} {
+      width:px2rem($i);
+    }
+    .set-h-0#{$i} {
+      width:px2rem($i);
+    }
+    .pt-0#{$i} {
+      padding-top: px2rem($i);
+    }
+    .pl-0#{$i} {
+      padding-left: px2rem($i);
+    }
+    .pb-0#{$i} {
+      padding-bottom: px2rem($i);
+    }
+    .pr-0#{$i} {
+      padding-right: px2rem($i);
+    }
+    .mt-0#{$i} {
+      margin-top: px2rem($i);
+    }
+    .ml-0#{$i} {
+      margin-left: px2rem($i);
+    }
+    .mb-0#{$i} {
+      margin-bottom: px2rem($i);
+    }
+    .mr-0#{$i} {
+      margin-right: px2rem($i);
+    }
+  }
+  @else {
+    .set-w-#{$i} {
+      width:px2rem($i);
+    }
+    .set-h-#{$i} {
+      width:px2rem($i);
+    }
+    .pt-#{$i} {
+      padding-top: px2rem($i);
+    }
+    .pl-#{$i} {
+      padding-left: px2rem($i);
+    }
+    .pb-#{$i} {
+      padding-bottom: px2rem($i);
+    }
+    .pr-#{$i} {
+      padding-right: px2rem($i);
+    }
+    .mt-#{$i} {
+      margin-top: px2rem($i);
+    }
+    .ml-#{$i} {
+      margin-left: px2rem($i);
+    }
+    .mb-#{$i} {
+      margin-bottom: px2rem($i);
+    }
+    .mr-#{$i} {
+      margin-right: px2rem($i);
+    }
+  }
+}
+$colorlist: (disable $disable) (primary $primary) (lightBg $lightBg) (bgfe $bgfe) (bgfd $bgfd) (greye1 $greye1) (grey5c $grey5c) (grey71 $grey71)(greya8,$greya8) (greyfb $greyfb) (grey97 $grey97) (goldc9 $goldc9) (gold2f $gold2f) (red $red) (black12 $black12) (yellow61 $yellow61) (orange $orange)(red19 $red19)(red33 $red33)(orange23 $orange23)(blueff $blueff);
+@each $color in $colorlist {
+  .c-#{nth($color,1)} {
+      color: nth($color, 2);
+  }
+  .bg-#{nth($color,1)} {
+      background-color: nth($color, 2);
+  }
+}
+.c-white{
+  color:#fff;
+}
+.no-wrap{
+  @include no-wrap;
+}

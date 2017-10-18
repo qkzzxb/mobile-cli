@@ -1,31 +1,29 @@
-//rem
 import 'hotcss'
+//vue全家桶
 import Vue from 'vue'
 import App from './App'
+import { sync } from 'vuex-router-sync'
 import router from './core/router'
 import store from './core/vuex'
-//bus
-import filter from './core/bus'
-import busEnven from './core/bus'
-window.bus = busEnven
-import pie from './core/pie.js'
-Vue.prototype.$pie = pie;
+sync(store, router);
+Vue.config.productionTip = false;
 //MintUi
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 Vue.use(MintUI);
-//basil(缓存)
-import basil from '@/core/basil.js'
-window.basil = basil;
-//axios
-import axios from 'axios'
-Vue.prototype.$http = axios;
-// axios.defaults.baseURL = '/pie'
-Vue.config.productionTip = false;
+//bus
+import busEnven from './core/bus'
+window.bus = busEnven
+//通用sass
+import '@/sass/common.scss';
+//过滤 通用函数 缓存 ajax
+import './core/filter.js';
+import './core/fn.js';
+import './core/axios.js';
+import './core/basil.js';
 //组件
-// import ActItem from '@/components/ActItem'
-// Vue.component('act-item', ActItem);
-/* eslint-disable no-new */
+// import demo from '@/components/ActItem'
+// Vue.component('act-item', demo);
 new Vue({
     el: '#app',
     router, //路由

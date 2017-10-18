@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import store from '@/core/vuex'
+import store from './vuex'
 import Router from 'vue-router'
 //页面
 const Index = () =>
@@ -18,7 +18,10 @@ const router = new Router({
 });
 //路由拦截
 router.beforeEach((to, from, next) => {
-    document.title = to.meta.title;
+    window.scrollTo(0,0);
+    if(to.meta.title){//动态title
+      document.title = to.meta.title;
+    }
     bus.$emit('modal_close');
     next();
 })
