@@ -17,6 +17,12 @@ module.exports = {
         publicPath: process.env.NODE_ENV === 'production' ?
             config.build.assetsPublicPath : config.dev.assetsPublicPath
     },
+    externals: {
+        basil: "Basil",
+        moment: "moment",
+        lodash: "_",
+        // FastClick:'FastClick'
+    },
     resolve: {
         extensions: ['.js', '.vue', '.json'],
         alias: {
@@ -33,6 +39,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
+                exclude: resolve('src/sdk'),
                 include: [resolve('src'), resolve('test')]
             },
             {

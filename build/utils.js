@@ -44,7 +44,7 @@ exports.cssLoaders = function (options) {
     }
   }
   function resolveResouce(name) {
-    return path.resolve(__dirname, '../src/sass/' + name);
+    return path.resolve(__dirname, '../src/assets/sass/' + name);
   }
   function generateSassResourceLoader() {
     var loaders = [

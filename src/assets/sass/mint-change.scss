@@ -1,0 +1,115 @@
+@import './base.scss';
+// 首页
+.mint-swipe-indicator {
+    background: #daf0f3;
+    opacity: 1;
+}
+
+//弹框
+.mint-msgbox-wrapper {
+    .mint-msgbox {
+        width: px2rem(600);
+        // height: px2rem(310);
+        border-radius: px2rem(10);
+        box-sizing: border-box;
+        .mint-msgbox-header {
+            padding-top: px2rem(37);
+            .mint-msgbox-title {
+                @include fs-15;
+                color: $bluefb;
+            }
+        }
+        .mint-msgbox-content {
+            padding: px2rem(20) px2rem(40);
+            text-align: center;
+            .mint-msgbox-message {
+                @include fs-15;
+                color: $black3;
+                text-align: left;
+                display: inline-block;
+                line-height: px2rem(44);
+            }
+        }
+        .mint-msgbox-btns {
+            @include h-lh(100);
+            .mint-msgbox-btn {
+                @include fs-15;
+                &.mint-msgbox-confirm {
+                    color: $bluefb;
+                }
+                &.mint-msgbox-cancel {
+                    color: $greyc4;
+                }
+            }
+        }
+    }
+}
+
+//单选框
+.mint-radiolist {
+    .mint-cell-wrapper {
+        font-size: 0;
+    }
+    .mint-cell:not(:last-child) {
+        margin-right: px2rem(34);
+    }
+    .mint-radiolist-label {
+        padding: 0;
+    }
+    .mint-radiolist-title {
+        display: none;
+    }
+    display: flex;
+    .mint-cell-wrapper {
+        padding: 0;
+    }
+    .mint-radio-core {
+        width: px2rem(30);
+        height: px2rem(30);
+        background-color: white;
+        box-sizing: border-box;
+        border-width: px2rem(2);
+    }
+    .mint-radio-core::after {
+        content: '\200b';
+        width: px2rem(18);
+        height: px2rem(18);
+        background-color: $bluefb;
+        border-radius: 50%;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+    }
+    .mint-radio-input:checked+.mint-radio-core::after {
+        background-color: $bluefb;
+    }
+    .mint-radio-input:checked+.mint-radio-core {
+        background-color: #fff;
+        border-color: $bluefb;
+    }
+    .mint-radio-label {
+        margin-left: px2rem(10);
+    }
+    .mint-cell-wrapper,
+    .mint-cell:last-child {
+        background: none;
+    }
+    .mint-radio-label {
+        @include set-font(15);
+    }
+}
+
+.mint-radio-core::after {
+    content: '\200b';
+    width: px2rem(18);
+    height: px2rem(18);
+    background-color: $bluefb;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+}

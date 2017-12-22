@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Basil from 'basil'
 const basil = new Basil({
-    namespace: 'diaokrWxC',
-    storages: ['session','cookie','local'],
+    namespace: 'xlian',
+    storages: ['session', 'cookie', 'local'],
     storage: 'session',
     expireDays: 0.1
 });

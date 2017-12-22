@@ -1,0 +1,254 @@
+@import './base.scss';
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+button,
+input,
+textarea,
+th,
+td {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+.pic {
+    >img {
+        display: block;
+        width: 100%;
+    }
+}
+
+.fr {
+    float: right;
+}
+
+.fl {
+    float: left;
+}
+
+.clearfix {
+    &:after {
+        content: "\200b";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.bg-img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#modal {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .8);
+    position: fixed;
+    z-index: 90;
+    top: 0;
+    left: 0;
+}
+
+.fs-18,
+.h1,
+h1 {
+    @include set-font(18);
+}
+
+.fs-16,
+.h2,
+h2 {
+    @include set-font(16);
+}
+
+.fs-15 {
+    @include set-font(15);
+}
+
+.fs-13 {
+    @include set-font(13);
+}
+
+.fs-14,
+.h3,
+h3 {
+    @include set-font(14);
+}
+
+.fs-12,
+.h5,
+h5 {
+    @include set-font(12);
+}
+
+.fs-10 {
+    @include set-font(10);
+}
+
+h1,
+h2,
+h3,
+h5 {
+    font-weight: 400;
+}
+
+@for $i from 1 through 200 {
+    @if $i < 10 {
+        .pt-0#{$i} {
+            padding-top: px2rem($i);
+        }
+        .pl-0#{$i} {
+            padding-left: px2rem($i);
+        }
+        .pb-0#{$i} {
+            padding-bottom: px2rem($i);
+        }
+        .pr-0#{$i} {
+            padding-right: px2rem($i);
+        }
+        .mt-0#{$i} {
+            margin-top: px2rem($i);
+        }
+        .ml-0#{$i} {
+            margin-left: px2rem($i);
+        }
+        .mb-0#{$i} {
+            margin-bottom: px2rem($i);
+        }
+        .mr-0#{$i} {
+            margin-right: px2rem($i);
+        }
+        .set-w-0#{$i} {
+            width: px2rem($i);
+        }
+        .set-h-0#{$i} {
+            height: px2rem($i);
+        }
+    }
+    @else {
+        .pt-#{$i} {
+            padding-top: px2rem($i);
+        }
+        .pl-#{$i} {
+            padding-left: px2rem($i);
+        }
+        .pb-#{$i} {
+            padding-bottom: px2rem($i);
+        }
+        .pr-#{$i} {
+            padding-right: px2rem($i);
+        }
+        .mt-#{$i} {
+            margin-top: px2rem($i);
+        }
+        .ml-#{$i} {
+            margin-left: px2rem($i);
+        }
+        .mb-#{$i} {
+            margin-bottom: px2rem($i);
+        }
+        .mr-#{$i} {
+            margin-right: px2rem($i);
+        }
+        .set-w-#{$i} {
+            width: px2rem($i);
+        }
+        .set-h-#{$i} {
+            height: px2rem($i);
+        }
+    }
+}
+
+$colorlist: (black3 $black3) (greyd3 $greyd3) (greyf4 $greyf4) (greya8 $greya8) (grey99 $grey99) (greyd9 $greyd9) (bluef6 $bluef6) (bluef7 $bluef7) (bluefb $bluefb)(red31 $red31)(grey92 $grey92)(grey66 $grey66)(greyc4 $greyc4)(orange4d $orange4d)(greenca $greenca)(green50 $green50)(greenbf $greenbf)(greycc $greycc)(greyc9 $greyc9)(greyec $greyec)(grey7f $grey7f)(orange66 $orange66)(grey77 $grey77)(greycd $greycd)(orange41 $orange41)(red60 $red60)(greye8 $greye8)(blueb9 $blueb9)(bluecd $bluecd)(bluef72 $bluef72);
+@each $color in $colorlist {
+    .c-#{nth($color,1)} {
+        color: nth($color, 2);
+    }
+    .bg-#{nth($color,1)} {
+        background-color: nth($color, 2);
+    }
+}
+
+textarea,
+input,
+button,
+select {
+    outline: none;
+    border: none;
+    background: transparent;
+}
+
+::-webkit-input-placeholder {
+    color: #a8a8a8;
+}
+
+button {
+    display: block;
+    box-sizing: border-box;
+}
+
+textarea {
+    display: block;
+    box-sizing: border-box;
+    resize: none !important;
+}
+
+.no-wrap {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+//banner
+.banner {
+    height: px2rem(420);
+    .banner_img {
+        height: px2rem(420);
+    }
+}
+
+
+
+
+input {
+    width: px2rem(390)
+}
+
+
+.to-right {
+    margin-left: auto;
+}
+
+

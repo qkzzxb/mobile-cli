@@ -1,0 +1,128 @@
+$designWidth:750;
+@function px2rem($px) {
+    @return $px*320/$designWidth/20+rem;
+}
+
+@mixin set-font($px) {
+    font-size: $px*320/$designWidth/10+rem;
+}
+
+@mixin bgm() {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+@mixin h1() {
+    @include set-font(18);
+}
+
+@mixin h2() {
+    @include set-font(16);
+}
+
+@mixin h4() {
+    @include set-font(14);
+}
+
+@mixin h5() {
+    @include set-font(12);
+}
+
+@mixin fs-15() {
+    @include set-font(15);
+}
+
+@mixin fs-13() {
+    @include set-font(13);
+}
+
+@mixin fs-03() {
+    @include set-font(10);
+}
+
+@function pvh($px) {
+    @return $px/$designHeight*100+vh;
+}
+
+@mixin fs-lh($valA, $valB) {
+    @include set-font($valA);
+    line-height: px2rem($valB);
+}
+
+@mixin h-lh($px) {
+    line-height: px2rem($px);
+    height: px2rem($px);
+}
+
+@mixin fs-h-lh($valA, $valB) {
+    @include set-font($valA);
+    @include h-lh($valB);
+}
+
+@function px2rem($px) {
+    @return $px*320/$designWidth/20+rem;
+}
+
+@function pvh($px) {
+    @return $px/$designHeight*100+vh;
+}
+
+@mixin block() {
+    min-height: 100vh;
+    box-sizing: border-box;
+    background-color: $greyf4;
+}
+
+@mixin block-nobg() {
+    min-height: 100%;
+    box-sizing: border-box;
+}
+
+@mixin bgm() {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+@mixin no-wrap {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+@mixin shadow {
+    box-shadow: 0px -1px 0px 0px rgba(217, 217, 217, 1), 0px -1px 14px 0px rgba(217, 217, 217, 1);
+}
+
+$black3:#333;
+$greycc:#ccc;
+$greyec:#ececec;
+$greycd:#cdcdcd;
+$greyd3:#d3d3d3;
+$greyf4:#f4f4f4;//block
+$greyf5:#f5f5f5;
+$grey7f:#7f7f7f;
+$grey77:#777;
+$greyc4:#c4c4c4;
+$greyc9:#c9c9c9;
+$greya8:#a8a8a8;
+$greye8:#e8e8e8;
+$grey66:#666;
+$grey99:#999;
+$grey92:#929292;
+$greyd9:#d9d9d9;
+$bluef6:#5ca5f6;
+$bluef7:#48a8f7;
+$bluef72:#89c5f7;
+$bluefb:#1995fb;
+$red31:#f43531;
+$red60:#e76060;
+$orange41:#fea841;
+$orange4d:#f5a84d;
+$orange66:#f7b566;
+$greenca:#bee0ca;
+$green50:#006650;
+$greenbf:#b5d2bf;
+$blueb9:#588db9;
+$bluecd:#58c0cd;
