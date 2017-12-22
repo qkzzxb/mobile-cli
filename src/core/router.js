@@ -3,19 +3,19 @@ import store from '@/store'
 import Router from 'vue-router'
 import axios from 'axios'
 //首页
-const Promise = () =>
-    import ('@/views/Promise');
+const Home = () =>
+    import ('@/views/Home');
 //路由
 Vue.use(Router);
 const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'Promise',
+      name: 'Home',
       meta: {
-          title: 'Promise'
+          title: 'Home'
       },
-      component: Promise
+      component: Home
     }
   ]
 });

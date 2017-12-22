@@ -1,23 +1,11 @@
 <template>
   <div id="app">
-    <h1 class="text-center">
-      mapState:{{name}}{{is_login}}{{id}}{{psw}}
-    </h1>
     <router-view></router-view>
   </div>
 </template>
 <script>
-import {mapState} from 'vuex';
 export default {
   name: 'app',
-  computed: {
-    ...mapState([
-        'name',
-        'is_login',
-        'id',
-        'psw'
-      ])
-  },
 }
 </script>
 <style lang="scss">
