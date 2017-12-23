@@ -4,8 +4,22 @@
   </div>
 </template>
 <script>
+import utils from '@/utils/simpleUtils'
 export default {
   name: 'app',
+  data() {
+    return {
+      data1:[7,10,5,20,2,66,3]
+    }
+  },
+  created(){
+    // console.log(this.data1.sort(this.sort));
+  },
+  methods: {
+    sort(val1,val2) {
+      return val2-val1
+    }
+  },
 }
 </script>
 <style lang="scss">

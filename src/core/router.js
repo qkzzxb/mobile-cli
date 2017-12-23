@@ -2,9 +2,8 @@ import Vue from 'vue'
 import store from '@/store'
 import Router from 'vue-router'
 import axios from 'axios'
-//首页
-const Home = () =>
-    import ('@/views/Home');
+const Home = () => import ('@/views/Home');
+const Slot = () => import ('@/views/Slot');
 //路由
 Vue.use(Router);
 const router = new Router({
@@ -16,7 +15,15 @@ const router = new Router({
           title: 'Home'
       },
       component: Home
-    }
+    },
+    {
+      path: '/slot',
+      name: 'Slot',
+      meta: {
+          title: 'Slot'
+      },
+      component: Slot
+    },
   ]
 });
 //路由拦截

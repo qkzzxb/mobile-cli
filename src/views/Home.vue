@@ -7,13 +7,16 @@
     <h1>组件v-model绑定:</h1>
     <input-v-model v-model="data1"></input-v-model>
     <p>{{data1}}</p>
+    <p>Rainbow</p>
+    <rainbow :num="3"></rainbow>
   </div>
 </template>
 <script>
   import {mapState} from 'vuex';
   import inputVModel from '@/components/inputVModel'
+  import Rainbow from '@/components/Rainbow'
   export default {
-    components:{inputVModel},
+    components:{inputVModel,Rainbow},
     data() {
       return {
         data1:''
