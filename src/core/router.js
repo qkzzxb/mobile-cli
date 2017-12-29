@@ -4,6 +4,10 @@ import Router from 'vue-router'
 import axios from 'axios'
 const Home = () => import ('@/views/Home');
 const Slot = () => import ('@/views/Slot');
+const Sort = () => import ('@/views/Sort');
+const Class = () => import ('@/views/Class');
+const Map = () => import ('@/views/Map');
+const Symbol = () => import ('@/views/Symbol');
 //路由
 Vue.use(Router);
 const router = new Router({
@@ -11,18 +15,32 @@ const router = new Router({
     {
       path: '/',
       name: 'Home',
-      meta: {
-          title: 'Home'
-      },
       component: Home
     },
     {
       path: '/slot',
       name: 'Slot',
-      meta: {
-          title: 'Slot'
-      },
       component: Slot
+    },
+    {
+      path: '/sort',
+      name: 'Sort',
+      component: Sort
+    },
+    {
+      path: '/class',
+      name: 'Class',
+      component: Class
+    },
+    {
+      path: '/map',
+      name: 'Map',
+      component: Map
+    },
+    {
+      path: '/symbol',
+      name: 'Symbol',
+      component: Symbol
     },
   ]
 });

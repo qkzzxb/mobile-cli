@@ -9,7 +9,9 @@
         "stage-2"
     ],
     "plugins": [
-        "transform-runtime", ["component", [{
+        "transform-runtime", 
+        "transform-vue-jsx",
+        ["component", [{
                 "libraryName": "mint-ui",
                 "style": true
             },

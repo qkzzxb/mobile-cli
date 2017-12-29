@@ -13,7 +13,6 @@ import '@/core'
 //sass引入
 import '@/assets/sass/mint-change.scss';
 import '@/assets/sass/common.scss';
-
 new Vue({
     el: '#app',
     router,

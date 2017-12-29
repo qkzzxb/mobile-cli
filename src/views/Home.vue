@@ -1,13 +1,13 @@
 <template>
   <div>
     <h1>mapState:</h1>
-    <p class="text-center">{{name}}&emsp;&emsp;{{is_login}}&emsp;&emsp;{{id}}&emsp;&emsp;{{psw}}</p>
+    <p class="text-center">{{name}}&emsp;&emsp;{{id}}&emsp;&emsp;</p>
     <h1>Promise.All:</h1>
     <button @click.stop="doPromiseAll">doPromiseAll</button>
     <h1>组件v-model绑定:</h1>
-    <input-v-model v-model="data1"></input-v-model>
+    <input-v-model v-model="data1"/>
     <p>{{data1}}</p>
-    <p>Rainbow</p>
+    <h1>Rainbow</h1>
     <rainbow :num="3"></rainbow>
   </div>
 </template>
@@ -48,9 +48,7 @@
     computed: {
     ...mapState([
         'name',
-        'is_login',
-        'id',
-        'psw'
+        'id'
       ])
     },
   };
