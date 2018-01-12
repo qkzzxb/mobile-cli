@@ -31,7 +31,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/pie': {
-        target: 'http://test.dev/',
+        target: 'http://localhost:3000',
         changeOrigin: true,
         pathRewrite: {
           '^/pie': '/'

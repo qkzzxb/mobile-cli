@@ -10,6 +10,8 @@ const Map = () => import ('@/views/Map');
 const Symbol = () => import ('@/views/Symbol');
 const Obj = () => import ('@/views/Obj');
 const Math = () => import ('@/views/Math');
+const Img = () => import ('@/views/Img');
+const Img2 = () => import ('@/views/Img2');
 //路由
 Vue.use(Router);
 const router = new Router({
@@ -22,6 +24,8 @@ const router = new Router({
     { path: '/symbol',name: 'Symbol',component: Symbol },
     { path: '/obj',name: 'Obj',component: Obj },
     { path: '/math',name: 'Math',component: Math },
+    { path: '/img',name: 'Img',component: Img },
+    { path: '/img2',name: 'Img2',component: Img2 },
   ]
 });
 //路由拦截

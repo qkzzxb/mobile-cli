@@ -23,6 +23,6 @@ axios.interceptors.response.use((res) => {
     return Promise.reject(error);
 });
 if (process.env.NODE_ENV == 'development') { //dev用
-    axios.defaults.baseURL = '/api';
+    axios.defaults.baseURL = '/pie';
 }
-Vue.prototype.$http = axios;
+Vue.prototype.$http = axios;    
