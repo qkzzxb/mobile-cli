@@ -12,6 +12,9 @@ const Obj = () => import ('@/views/Obj');
 const Math = () => import ('@/views/Math');
 const Img = () => import ('@/views/Img');
 const Img2 = () => import ('@/views/Img2');
+const Table = () => import ('@/views/Table');
+//blog
+const signup = () => import ('@/views/blog/signup');
 //路由
 Vue.use(Router);
 const router = new Router({
@@ -26,6 +29,8 @@ const router = new Router({
     { path: '/math',name: 'Math',component: Math },
     { path: '/img',name: 'Img',component: Img },
     { path: '/img2',name: 'Img2',component: Img2 },
+    { path: '/blog/signup',name: 'signup',component: signup },
+    { path: '/table',name: 'table',component: Table },
   ]
 });
 //路由拦截

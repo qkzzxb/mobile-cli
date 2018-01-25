@@ -1,36 +1,18 @@
 <template>
   <div>
-    <input type="file" @change="submit">
-    <div v-if="imgs" id="imgs">
-      <div class="img">
-        <img :src="imgs.img1.url">
-        {{imgs.img1.size}}
-      </div>
-      <div class="img">
-        <img :src="imgs.img2.url">
-        {{imgs.img2.size}}
-      </div>
-    </div>
+    <el-date-picker
+      v-model="timer"
+      type="datetime"
+      placeholder="选择日期时间">
+    </el-date-picker>
   </div>
-</template>
+</template> 
 
 <script>
-  
   export default {
     data() {
       return {
-        imgs: null
-      }
-    },
-    methods: {
-      submit(e) {
-        let file = e.target.files[0];
-        let form = new FormData();
-        form.append('file', file);
-        this.$http.post('/uploader',form)
-        .then((resp) => {
-          this.imgs = resp;
-        })  
+        timer:[new Date(), new Date()]
       }
     },
   }
