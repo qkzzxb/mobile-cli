@@ -1,4 +1,4 @@
-import 'hotcss'
+// import 'hotcss'
 // FastClick.attach(document.body);
 //vue全家桶
 import Vue from 'vue'
