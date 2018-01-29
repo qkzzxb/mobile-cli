@@ -1,19 +1,7 @@
  <template>
-  <!-- <SMSTemplateEditor ref="smsEditor" 
-    :model="obj"
-    :nameObject="nameObject"
-    :rowContent="rowContent" 
-    :id="rowId"
-    :offsetTop="offsetTop" 
-    :customLabelTranslate="customLabelTranslate"
-    :variable="variable"
-    @tableContentChange="tableContentChange"
-  /> -->
-  <div class="pi-talbe-editor-wrap" :style="{top: offsetTop+ 'px'}">
-    <div class="pi-talbe-editor-inner">
-      <!-- <script :id="editorId" name="content" type="text/plain" style="width: 400px">
-      </script> -->
-    </div>
+  <div>
+    <script :id="editorId" name="content" type="text/plain" style="width: 400px">
+    </script>
   </div>
 </template>
 <script>
@@ -27,29 +15,17 @@ export default {
       type: Object,
       required: true,
     },
-    rowContent: {
-      type: String,
-      required: true,
-    },
-    variable:{
-      type: Array,
-      default: []
-    },
     nameObject:{
       type: Object,
       required: true,
     },
-    id: {
-      type: String,
+    row: {
+      type: Object,
       required: true,
     },
     customLabelTranslate: {
       type: Array,
       required: true
-    },
-    offsetTop:{
-      type: Number,
-      default: 0
     }
   },
   data() {
@@ -60,7 +36,6 @@ export default {
       editorId: 'sl_ueditor_'+ stringUtils.nextId(),
       ueditor: {},
       ueditorContent:'',
-      parentClass: '.pi-talbe-editor-inner'
     };
   },
   mounted(){
@@ -72,29 +47,12 @@ export default {
       this.registerCombox();
       this.ueditor = UE.getEditor(vm.editorId, vm.ueditorConfig);
       this.ueditor.ready(() => {
-        this.ueditor.setContent(this.rowContent );
+        this.ueditor.setContent(this.row.content );
         this.ueditor.addListener("contentChange", () => {
           this.ueditorContent = this.ueditor.getPlainTxt();
           this.tableContentChange();
         })
       })
-    },
-    newEditor(){
-      let newEditor = document.createElement('script');
-      this.editorId = 'sl_ueditor_'+ stringUtils.nextId();
-      newEditor.id = this.editorId;
-      newEditor.name = 'content';
-      newEditor.type = 'text/plain';
-      newEditor.style.width = '400px';
-      let parent = document.querySelector(this.parentClass);
-      parent.appendChild(newEditor);
-    },
-    deletEditor(){
-      let oldEditor = document.querySelector(`#${this.editorId}`);
-      if(oldEditor){
-        let parent = document.querySelector(this.parentClass);
-        parent.removeChild(oldEditor);
-      }
     },
     registerCombox() {
       let vm = this;
@@ -106,8 +64,8 @@ export default {
           },
         });
         var items = [];
-        if(vm.variable.length > 0){
-          vm.variable.forEach( label => {
+        if(vm.row.variable.length > 0){
+          vm.row.variable.forEach( label => {
             items.push({
               label: vm.nameObject[label],
               value: '{' + vm.nameObject[label] + '}',
@@ -119,15 +77,15 @@ export default {
             })
           });
         }else{
-          items = [
+          items.push(
             {
               label: '暂无可用数据',
               value: '',
               renderLabelHtml: function() {
-                return "<span style='color: #ccc'>暂无可用数据</span>";
+                return "<span style='color: #ccc; font-size: 12px;'>暂无可用数据</span>";
               }
             }
-          ]
+          )
         }
         var combox = new UE.ui.Combox({
           editor: editor,
@@ -159,25 +117,17 @@ export default {
         }
       })
     },
-    lableTransform(value) {
-      this.customLabelTranslate.forEach((item) => {
-        value = value.replace(new RegExp(item.label,'g'),this.model[item.value]);
-      })
-      return value;
-    },
     tableContentChange(){
       let newData = {
-        id: this.id,
+        id: this.row.id,
         content: this.ueditorContent
       }
       this.$emit('tableContentChange', newData);
     }
   },
   watch: {
-    id(id){
+    'row.id'(id){
       if(id){
-        this.deletEditor();
-        this.newEditor();
         this.editorReady();
       }
     },
@@ -187,9 +137,3 @@ export default {
   }
 };
 </script>
-<style lang="scss">
-  .pi-talbe-editor-wrap{
-    position: absolute;
-    right:20px ;
-  }
-</style>
