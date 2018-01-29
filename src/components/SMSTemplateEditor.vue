@@ -1,8 +1,8 @@
  <template>
   <div class="pi-talbe-editor-wrap" :style="{top: offsetTop+ 'px'}">
     <div class="pi-talbe-editor-inner">
-      <script :id="editorId" name="content" type="text/plain" style="width: 400px">
-      </script>
+      <!-- <script :id="editorId" name="content" type="text/plain" style="width: 400px">
+      </script> -->
     </div>
   </div>
 </template>
@@ -13,8 +13,20 @@ import '../../static/ueditor/ueditor.all.js';
 export default {
   name:'sl-SMS-template-editor',
   props: {
-    value: {
+    model:{
+      type: Object,
+      required: true,
+    },
+    rowContent: {
       type: String,
+      required: true,
+    },
+    variable:{
+      type: Array,
+      default: []
+    },
+    nameObject:{
+      type: Object,
       required: true,
     },
     id: {
@@ -35,30 +47,48 @@ export default {
       ueditorConfig: {
         toolbars: [[]]
       },
-      editorId: 'sl_ueditor_' + stringUtils.nextId(),
+      editorId: 'sl_ueditor_'+ stringUtils.nextId(),
       ueditor: {},
-      ueditorContent:''
+      ueditorContent:'',
+      parentClass: '.pi-talbe-editor-inner'
     };
   },
   mounted(){
     this.editorReady();
   },
   methods: {
-    editorReady(editorInstance) {
+    editorReady() {
       let vm = this;
-      this.ueditor = UE.getEditor(vm.editorId,vm.ueditorConfig);
       this.registerCombox();
-      this.ueditor.addListener("contentChange", () => {
-        this.ueditorContent = this.ueditor.getPlainTxt();
-        this.validateContent()
-        .then(()=>{
-          this.rowContent = this.ueditorContent;
+      this.ueditor = UE.getEditor(vm.editorId, vm.ueditorConfig);
+      this.ueditor.ready(() => {
+        this.ueditor.setContent(this.rowContent );
+        this.ueditor.addListener("contentChange", () => {
+          this.ueditorContent = this.ueditor.getPlainTxt();
+          this.tableContentChange();
         })
       })
     },
-    registerCombox(){
+    newEditor(){
+      let newEditor = document.createElement('script');
+      this.editorId = 'sl_ueditor_'+ stringUtils.nextId();
+      newEditor.id = this.editorId;
+      newEditor.name = 'content';
+      newEditor.type = 'text/plain';
+      newEditor.style.width = '400px';
+      let parent = document.querySelector(this.parentClass);
+      parent.appendChild(newEditor);
+    },
+    deletEditor(){
+      let oldEditor = document.querySelector(`#${this.editorId}`);
+      if(oldEditor){
+        let parent = document.querySelector(this.parentClass);
+        parent.removeChild(oldEditor);
+      }
+    },
+    registerCombox() {
       let vm = this;
-      UE.registerUI("模板标签",function(editor, uiName) {
+      UE.registerUI("模板标签", function(editor, uiName) {
         editor.registerCommand(uiName, {
           execCommand: function(cmdName, value) {
             this.execCommand('insertHtml', value);
@@ -66,18 +96,29 @@ export default {
           },
         });
         var items = [];
-        vm.customLabelTranslate.forEach(item => {
-          items.push({
-            name: item.name,
-            label: item.label,
-            value: item.label,
-            renderLabelHtml: function() {
-              return (
-                this.label
-              );
+        if(vm.variable.length > 0){
+          vm.variable.forEach( label => {
+            items.push({
+              label: vm.nameObject[label],
+              value: '{' + vm.nameObject[label] + '}',
+              renderLabelHtml: function() {
+                return (
+                  this.label
+                );
+              }
+            })
+          });
+        }else{
+          items = [
+            {
+              label: '暂无可用数据',
+              value: '',
+              renderLabelHtml: function() {
+                return "<span style='color: #ccc'>暂无可用数据</span>";
+              }
             }
-          })
-        });
+          ]
+        }
         var combox = new UE.ui.Combox({
           editor: editor,
           items: items,
@@ -88,9 +129,9 @@ export default {
           initValue: uiName
         });
         return combox;
-      },0,vm.editorId);
+      }, 0, vm.editorId);
     },
-    validateContent(){
+    validateContent() {
       let arr = this.ueditorContent.match(/\{(.+?)\}/g);
       return new Promise((resolve, reject) => {
         if(arr){
@@ -110,25 +151,26 @@ export default {
     },
     lableTransform(value) {
       this.customLabelTranslate.forEach((item) => {
-        value = value.replace(new RegExp(item.label,'g'),item.value);
+        value = value.replace(new RegExp(item.label,'g'),this.model[item.value]);
       })
       return value;
-    }
-  },
-  computed: {
-    rowContent: {
-      get(){
-        return this.value;
-      },
-      set(val){
-        this.$emit('input', val)
+    },
+    tableContentChange(){
+      let newData = {
+        id: this.id,
+        content: this.ueditorContent
       }
+      this.$emit('tableContentChange', newData);
     }
   },
   watch: {
-    id(){
-      this.ueditor.setContent(this.rowContent);
-    }
+    id(id){
+      if(id){
+        this.deletEditor();
+        this.newEditor();
+        this.editorReady();
+      }
+    },
   },
   beforeDestroy(){
     this.ueditor.removeListener("contentChange");
