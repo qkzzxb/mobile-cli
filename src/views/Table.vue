@@ -48,15 +48,15 @@
       return {
         templateObj: {
           nickname:{
-            name: 'XYZ',
+            name: '用户XYZ',
             color: '#990033'
           },
           orderId: {
-            name: '「3061607603」',
+            name: '订单号:「3061607603」',
             color: '#996699'
           },
           sequenceId: {
-            name: '「18034283211」',
+            name: '流水号:「18034283211」',
             color: '#FF6666'
           },
           verCode: {
@@ -68,15 +68,15 @@
             color: '#CCFFFF'
           },
           goods: {
-            name:  '巧克力',
+            name:  '商品名称:巧克力',
             color: '#FFCCCC'
           },
           price: {
-            name: '39.8元',
+            name: '价格:39.8元',
             color: 'green'
           },
           date: {
-            name: '2014年9月22日',
+            name: '日期:2014年9月22日',
             color: 'blue'
           },
           remark: {
@@ -107,6 +107,12 @@
           { label: '{ {remark} }', value: 'remark'}
         ],
         template_list: [
+          { template_id: 'iPk5sOIt5X_004',
+            title: "购买成功通知",
+            content: "{ {notice} }\n{ {goods} }\n{ {price} }\n{ {date} }\n{ {remark} }",
+            variable: ['nickname', 'orderId', 'sequenceId', 'verCode', 'notice', 'goods', 'price', 'date', 'remark'],
+            show: false
+          },
           { template_id: 'iPk5sOIt5X_001',
             title: "商场促销",
             content:
@@ -117,7 +123,7 @@
           { template_id: 'iPk5sOIt5X_002',
             title: "饿了么",
             content:
-              "【饿了么】您在「派客鸡排（回龙店）」下的{订单号} 退款成功，27.58元退款已经原路返还至您的支付账户。订单对应的交易{流水号}，可前往「微信支付」查询退款详情。",
+              "【饿了么】您在「派客鸡排（回龙店）」下的{ {orderId} } 退款成功，27.58元退款已经原路返还至您的支付账户。订单对应的交易{流水号}，可前往「微信支付」查询退款详情。",
             variable: ['orderId', 'verCode'],
             show: false 
           },
@@ -127,12 +133,6 @@
             variable: [],
             show: false
           },
-          { template_id: 'iPk5sOIt5X_004',
-            title: "购买成功通知",
-            content: "{ {notice} }\n商品名称:{ {goods} }\n消费金额:{ {price} }\n购买时间:{ {date} }\n{ {remark} }",
-            variable: ['nickname', 'orderId', 'sequenceId', 'verCode', 'notice', 'goods', 'price', 'date', 'remark'],
-            show: false
-          }
         ]
       }
     },
@@ -179,11 +179,12 @@
       saveTemplate(row){
         this.$refs['sl-sms-ediotr' + row.template_id].validateContent()
         .then(() => {
-          row.content = row.content.replace(/<\/p><p>/g, '\n');
-          row.content = row.content.replace(/<br\/>/g, '\n');
-          row.content = row.content.replace(/<p>/g, '');
-          row.content = row.content.replace(/<\/p>/g, '\n');
-          console.log(JSON.stringify(row.content));
+          let content = row.content;
+          content = content.replace(/<\/p><p>/g, '\n');
+          content = content.replace(/<br\/>/g, '\n');
+          content = content.replace(/<p>/g, '');
+          content = content.replace(/<\/p>/g, '');
+          console.log(JSON.stringify(content));
         })
         .catch((err) => {
           this.$message.error(err);

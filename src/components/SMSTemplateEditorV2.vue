@@ -130,6 +130,7 @@ export default {
   },
   beforeDestroy(){
     this.ueditor.removeListener("contentChange");
+    this.ueditor.destroy();
   }
 };
 </script>
