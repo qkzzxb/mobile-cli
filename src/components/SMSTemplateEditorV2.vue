@@ -11,10 +11,6 @@ import '../../static/ueditor/ueditor.all.js';
 export default {
   name:'sl-SMS-template-editor',
   props: {
-    model:{
-      type: Object,
-      required: true,
-    },
     nameObject:{
       type: Object,
       required: true,
@@ -49,7 +45,7 @@ export default {
       this.ueditor.ready(() => {
         this.ueditor.setContent(this.row.content );
         this.ueditor.addListener("contentChange", () => {
-          this.ueditorContent = this.ueditor.getPlainTxt();
+          this.ueditorContent = this.ueditor.getContent();
           this.tableContentChange();
         })
       })
@@ -68,7 +64,7 @@ export default {
           vm.row.variable.forEach( label => {
             items.push({
               label: vm.nameObject[label],
-              value: '{' + vm.nameObject[label] + '}',
+              value: '{ {' + label + '} }',
               renderLabelHtml: function() {
                 return (
                   this.label
@@ -100,7 +96,7 @@ export default {
       }, 0, vm.editorId);
     },
     validateContent() {
-      let arr = this.ueditorContent.match(/\{(.+?)\}/g);
+      let arr = this.ueditorContent.match(/\{ {(.+?)\} }/g);
       return new Promise((resolve, reject) => {
         if(arr){
           for(let label of arr){
@@ -119,7 +115,7 @@ export default {
     },
     tableContentChange(){
       let newData = {
-        id: this.row.id,
+        template_id: this.row.template_id,
         content: this.ueditorContent
       }
       this.$emit('tableContentChange', newData);
