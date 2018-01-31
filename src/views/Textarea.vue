@@ -1,38 +1,40 @@
 <template>
   <div class="sl-sms-wrap">
     <div>
-      <el-button type="text" v-for="item of labelList" :key="item.value" @click="addLabel(item)">
+      <el-button type="text" v-for="item of labelList" :key="item.value" @click="addLabel(item.label)">
         {{item.name}}
       </el-button>
     </div>
     <el-input id="demo" type="textarea" :rows="4" v-model="textarea">
     </el-input>
+    <sl-separator-color color="orange"></sl-separator-color>
   </div>
 </template>
 
 <script>
  import { ueCustomLabelTranslate as labelList} from '@/constants/enumConstants';
+ import slSeparatorColor from '@/components/Colors';
   export default {
+    components: {
+      slSeparatorColor
+    },
     data() {
       return {
         labelList: labelList,
-        textarea:''
+        textarea: '12345678910111213141516171819120'
       }
     },
     methods: {
-      addLabel(item) {
-        this.setFocus(item.label)
-      },
-      setFocus(label){
-        let obj  = document.querySelector('#demo');
-        let startPos = obj.selectionStart;
-        let endPos = obj.selectionEnd;
+      addLabel(label){
+        let textarea  = document.querySelector('#demo');
+        let startPos = textarea.selectionStart;
+        let endPos = textarea.selectionEnd;
         let len = startPos + label.length; 
-        // obj.setRangeText(label);
+        // textarea.setRangeText(label);
         this.textarea = this.textarea.slice(0,startPos) + label + this.textarea.slice(startPos);//兼容EDGE
         this.$nextTick(() => {
-          obj.focus();
-          obj.selectionStart = obj.selectionEnd = len;
+          textarea.focus();
+          textarea.selectionStart = textarea.selectionEnd = len;
         })
       }
     },
