@@ -14,6 +14,8 @@ const Img = () => import ('@/views/Img');
 const Img2 = () => import ('@/views/Img2');
 const Table = () => import ('@/views/Table');
 const Textarea = () => import ('@/views/Textarea');
+const Ver = () => import ('@/views/Ver');
+const Sf = () => import ('@/views/Sf');
 //blog
 const signup = () => import ('@/views/blog/signup');
 //路由
@@ -33,6 +35,8 @@ const router = new Router({
     { path: '/blog/signup',name: 'signup',component: signup },
     { path: '/table',name: 'table',component: Table },
     { path: '/textarea',name: 'textarea',component: Textarea },
+    { path: '/ver',name: 'ver',component: Ver },
+    { path: '/sf',name: 'sf',component: Sf },
   ]
 });
 //路由拦截

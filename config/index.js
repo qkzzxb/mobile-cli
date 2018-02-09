@@ -4,9 +4,9 @@ var path = require('path')
 module.exports = {
   build: {
     env: require('./prod.env'),
-    // index: path.resolve(__dirname, '../dist/index.html'),//默认
-    // assetsRoot: path.resolve(__dirname, '../dist'),
-    index: path.resolve(__dirname, '../../index.html'), //猎米打包
+    index: path.resolve(__dirname, '../dist/index.html'),//默认
+    assetsRoot: path.resolve(__dirname, '../dist'),
+    index: path.resolve(__dirname, '../../index.html'), //其他位置打包
     assetsRoot: path.resolve(__dirname, '../../'),
     assetsSubDirectory: 'static',
     assetsPublicPath: './',
@@ -29,7 +29,7 @@ module.exports = {
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {
+    proxyTable: {//反向代理
       '/pie': {
         target: 'http://localhost:3000',
         changeOrigin: true,
