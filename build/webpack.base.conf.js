@@ -21,7 +21,7 @@ module.exports = {
         basil: "Basil",
         moment: "moment",
         lodash: "_",
-        // FastClick:'FastClick'
+        FastClick:'FastClick'
     },
     resolve: {
         extensions: ['.js', '.vue', '.json'],

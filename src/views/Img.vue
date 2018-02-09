@@ -1,32 +1,19 @@
 <template>
-  <el-upload
-  class="upload-demo"
-  drag
-  action="/pie/upload"
-  multiple>
-  <i class="el-icon-upload"></i>
-  <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-  <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
-</el-upload>
+  <div>
+    <upload-post></upload-post>
+    233
+  </div>
 </template>
 
 <script>
-  import lrz from 'lrz';
+  import uploadPost from '@/components/UploadPost';
   export default {
-    created(){
-    },
-    methods: {
-      submit(e) {
-        let file = e.target.files[0];
-        lrz(file)
-        .then(function (rst) {
-            console.log(rst);
-        })
-        .catch(function (err) {
-        })
-        .always(function () {
-        });
-      }
-    },
+    components:{
+      uploadPost
+    }
   }
 </script>
+
+<style lang="scss">
+
+</style>
