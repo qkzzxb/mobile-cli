@@ -31,19 +31,21 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {//反向代理
       '/pie': {
-        target: 'http://localhost:3000',
+        // target: 'http://localhost:3000',
+        target: 'http://www.bench.com',
+        // target: 'http://localhost:3003',//mock
         changeOrigin: true,
         pathRewrite: {
-          '^/pie': '/'
+          '^/api': '/'
         }
       },
-      '/api': {
+      /* '/api': {
         target: 'http://localhost:3003',//mock
         changeOrigin: true,
         pathRewrite: {
           '^/api': '/api'
         }
-      }
+      } */
     },
     cssSourceMap: false
   }
