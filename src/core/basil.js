@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import '../utils/basil.min.js'
 const basil = new Basil({
-    namespace: 'xlian',
-    storages: ['session', 'cookie', 'local'],
+    namespace: 'pie',
+    storages: ['cookie', 'session', 'local'],
     storage: 'session',
-    expireDays: 0.1
+    expireDays: 0.0007//一分钟
 });
 Vue.prototype.$basil = basil;
 export default basil;   
+//
