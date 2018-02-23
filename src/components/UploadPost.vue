@@ -72,14 +72,18 @@
         reader.readAsDataURL(file);
       },
       finish() {
-        this.demo = 'https://vuefe.cn/images/stdlib.png';
-        this.valueCopy= 'https://vuefe.cn/images/stdlib.png';
+        // this.demo = 'https://vuefe.cn/images/stdlib.png';
+        // this.valueCopy= 'https://vuefe.cn/images/stdlib.png';
+        let base64 = this.img.replace(/data:image\/jpe?g;base64,|/g,'');
+        let params = {
+          base64 : base64
+        }
         this.cancel();
-        /* this.$http.post(this.img)
+        this.$http.post('/api/upload/v2', params)
         .then((res) => {
           this.demo = this.img;
-          this.valueCopy= res;
-        }) */
+          this.valueCopy= res.url;
+        })
       },
       cancel() {
         this.dialogVisible = false;

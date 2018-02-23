@@ -21,10 +21,6 @@
       }
     },
     created(){
-      this.$http.post('/api/upload/v2')
-      .then((res) => {
-        console.log(res);
-      })
     }
   }
 </script>

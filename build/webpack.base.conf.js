@@ -18,10 +18,8 @@ module.exports = {
             config.build.assetsPublicPath : config.dev.assetsPublicPath
     },
     externals: {
-        basil: "Basil",
-        moment: "moment",
-        lodash: "_",
-        FastClick:'FastClick'
+        // basil: "Basil",
+        // lodash: "_",
     },
     resolve: {
         extensions: ['.js', '.vue', '.json'],

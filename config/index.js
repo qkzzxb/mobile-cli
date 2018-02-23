@@ -36,7 +36,7 @@ module.exports = {
         // target: 'http://localhost:3003',//mock
         changeOrigin: true,
         pathRewrite: {
-          '^/api': '/'
+          '^/pie': '/'
         }
       },
       /* '/api': {
