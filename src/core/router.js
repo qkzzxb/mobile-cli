@@ -16,6 +16,7 @@ const Table = () => import ('@/views/Table');
 const Textarea = () => import ('@/views/Textarea');
 const Ver = () => import ('@/views/Ver');
 const Sf = () => import ('@/views/Sf');
+const Chat = () => import ('@/views/Chat');
 //blog
 const signup = () => import ('@/views/blog/signup');
 //路由
@@ -37,6 +38,7 @@ const router = new Router({
     { path: '/textarea',name: 'textarea',component: Textarea },
     { path: '/ver',name: 'ver',component: Ver },
     { path: '/sf',name: 'sf',component: Sf },
+    { path: '/chat',name: 'Chat',component: Chat },
   ]
 });
 //路由拦截

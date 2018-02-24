@@ -16,6 +16,7 @@
     "lodash": "^4.17.5",
     "mint-ui": "^2.2.9",
     "moment": "^2.20.1",
+    "socket.io-client": "^2.0.4",
     "vue": "^2.5.13",
     "vue-croppa": "^1.2.0",
     "vue-router": "^3.0.0",
