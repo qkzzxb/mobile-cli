@@ -7,9 +7,9 @@
       width="80%">
       <div class="upload-img-croppa-inner">
         <croppa 
-          v-model="model"
+          v-model="myCroppa"
           :show-remove-button="false" 
-          :quality="4"
+          :quality="2"
           :initial-image="img" 
           :accept="'image/*'" 
           :width="width/2" 
@@ -35,7 +35,7 @@
       <div v-else-if="!demo && !valueCopy" class="no-img">
         <p>注：图片大小小于5M（jpg/png/gif/bmp）</p>
       </div>
-      <input type="file" @change="get_img($event)">
+      <input ref="uploadPostInput" type="file" @change="getImg($event)">
     </div>
   </div>
 </template>
@@ -57,33 +57,37 @@
     },
     data() {
       return {
-        model: null,
+        myCroppa: {},
         img: null,
         demo: null
       };
     },
     methods: {
-      get_img(e) {
+      getImg(e) {
         let file = e.target.files[0];
         let reader = new FileReader();
         reader.onload = e => {
           this.img = e.target.result;
+          if(this.myCroppa.refresh){
+            this.myCroppa.refresh();
+          };
         };
         reader.readAsDataURL(file);
       },
       finish() {
-        // this.demo = 'https://vuefe.cn/images/stdlib.png';
-        // this.valueCopy= 'https://vuefe.cn/images/stdlib.png';
-        let base64 = this.img.replace(/data:image\/jpe?g;base64,|/g,'');
-        let params = {
-          base64 : base64
-        }
-        this.cancel();
-        this.$http.post('/api/upload/v2', params)
-        .then((res) => {
-          this.demo = this.img;
-          this.valueCopy= res.url;
-        })
+        let dataUrl = this.myCroppa.generateDataUrl();
+        this.myCroppa.generateBlob((blob) => {
+          var formData = new FormData();
+          formData.append('file', blob, "demo.jpg");
+          this.cancel();
+          // this.$http.post('/api/upload/v2', params)//php
+          this.$http.post('/upload', formData)//node
+          .then((res) => {
+            this.demo = dataUrl;
+            this.valueCopy= res.url;
+            this.$refs.uploadPostInput.value = null;
+          })
+        }, 'image/jpeg', 0.8);
       },
       cancel() {
         this.dialogVisible = false;
@@ -176,7 +180,8 @@
     }
     img {
       display: block;
-      width: 400px;
+      width: 100%;
+      height: 100%;
     }
   }
 }
