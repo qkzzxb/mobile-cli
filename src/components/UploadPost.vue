@@ -84,7 +84,7 @@
           this.$http.post('/upload', formData)//node
           .then((res) => {
             this.demo = dataUrl;
-            this.valueCopy= res.url;
+            this.valueCopy= res.data.url;
             this.$refs.uploadPostInput.value = null;
           })
         }, 'image/jpeg', 0.8);
