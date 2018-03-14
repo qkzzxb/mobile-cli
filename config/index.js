@@ -31,7 +31,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {//反向代理
       '/pie': {
-        target: 'http://localhost:3000',//node
+        target: 'http://localhost:3333',//node
         // target: 'http://www.bench.com',//php
         // target: 'http://localhost:3003',//mock
         changeOrigin: true,
