@@ -18,6 +18,7 @@ const Ver = () => import ('@/views/Ver');
 const Sf = () => import ('@/views/Sf');
 const Chat = () => import ('@/views/Chat');
 const Test = () => import ('@/views/Test');
+const Unix = () => import ('@/views/Unix');
 //blog
 const signup = () => import ('@/views/blog/signup');
 //路由
@@ -40,7 +41,8 @@ const router = new Router({
     { path: '/ver',name: 'ver',component: Ver },
     { path: '/sf',name: 'sf',component: Sf },
     { path: '/chat',name: 'Chat',component: Chat },
-    { path: '/test',name: 'Test',component: Test }
+    { path: '/test',name: 'Test',component: Test },
+    { path: '/unix',name: 'Unix',component: Unix },
   ]
 });
 //路由拦截
