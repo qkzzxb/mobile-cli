@@ -23,6 +23,10 @@ import { Button,Field } from 'mint-ui';
 Vue.component(Button.name, Button);
 Vue.component(Field.name, Field);
 
+//custom
+import TMap from '@/components/TMap';
+Vue.component(TMap.name, TMap);
+
 import '@/core'
 //sass引入
 import '@/assets/sass/mint-change.scss';
